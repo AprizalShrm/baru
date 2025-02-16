@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Iseng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        #noButton {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            max-width: 150px;
+            margin-bottom: 20px;
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <img src="keren.jpeg" alt="Gua di umur 11">
+        <h3>nanya doang ini bro, jawab jujur ae </h3>
+        <h1>Apakah gua jago ngoding?</h1>
+        <div class="button-container">
+            <button onclick="yesClicked()">Ya</button>
+            <button id="noButton" onclick="noClicked()">Enggak</button>
+        </div>
+        <p id="message" class="hidden">Tombol enggaknya rusak, mending lu tekan tombol ya</p>
+    </div>
+    <div id="thanksSection" class="hidden">
+        <img src="kucing.jpeg" alt="Gambar Terima Kasih">
+        <p id="thanksMessage">mwheheh makasih ye bro</p>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        function noClicked() {
+            let noButton = document.getElementById('noButton');
+            clickCount++;
+            
+            if (clickCount < 3) {
+                let randomX = Math.random() * (window.innerWidth - 100);
+                let randomY = Math.random() * (window.innerHeight - 50);
+                noButton.style.position = 'absolute';
+                noButton.style.left = `${randomX}px`;
+                noButton.style.top = `${randomY}px`;
+            } else {
+                noButton.style.display = 'none';
+                document.getElementById('message').classList.remove('hidden');
+            }
+        }
+
+        function yesClicked() {
+            document.getElementById('content').classList.add('hidden');
+            document.getElementById('thanksSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
